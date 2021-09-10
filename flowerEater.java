@@ -59,29 +59,26 @@ public class flowerEater extends Actor
             if(life>0)
             {
                 this.score = 0;
+                this.getWorld().showText ("Score: "+this.score, 300, 10);
+
                 Greenfoot.delay(75);
             }
              
         }
         if(life==0)
         {
-            this.lose();
+            this.getWorld().addObject(new lose(),300,200);
+
         }  
         
         if(this.score==25)
         {
-           this.win();
+            this.getWorld().removeObjects(this.getWorld().getObjects(bomb.class));
+            this.getWorld().removeObjects(this.getWorld().getObjects(flower.class));;
+            this.getWorld().addObject(new win(),300,200);
         }
     }
-    private void win()
-    {
-        
-    }
-    private void lose()
-    {
-        this.getWorld().addObject(new death(),300, 200);
-
-    }
+   
     private void mover()
     {
          if(Greenfoot.isKeyDown("up") == true)
